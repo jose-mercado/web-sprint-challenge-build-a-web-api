@@ -6,25 +6,25 @@ const router = express.Router()
 const {
     validateActionID,
     validateAction
-   } = require('./actions-middlware')
+} = require('./actions-middlware')
 
 router.get('/', (req,res,next)=>{
     Actions.get()
-     .then(actions=>{
-         res.json(actions)
-     })
-     .catch(next)
+        .then(actions=>{
+            res.json(actions)
+        })
+        .catch(next)
 })
 router.get('/:id', validateActionID, (req,res)=>{
     res.json(req.action)    
 })
 router.post('/', validateAction, (req,res,next)=>{
     Actions.insert(req.body)
-     .then(newAction => {
-         res.status(201).json(newAction)
-     })
-     .catch(next)
-} )
+        .then(newAction => {
+            res.status(201).json(newAction)
+        })
+        .catch(next)
+})
 router.put('/:id', validateActionID, validateAction, (req, res, next)=>{
     Actions.update(req.params.id, req.body)
     .then(()=>{

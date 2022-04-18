@@ -17,10 +17,11 @@ async function validateProjectID(req,res,next) {
         next
     }
 }
+
 function validateProject(req,res,next) {
     try{
-        const {name, description, completed} = req.body
-        if (!name || !description || completed == null){
+        const {name, description} = req.body
+        if (!name || !description){
             res.status(400).json({
                 message: "Missing valid name or description"
             })
@@ -32,7 +33,6 @@ function validateProject(req,res,next) {
         console.log(err)
     }
 }
-
 module.exports = {
     validateProjectID,
     validateProject
