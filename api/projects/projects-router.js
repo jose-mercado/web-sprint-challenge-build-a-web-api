@@ -26,8 +26,7 @@ router.post('/', validateProjectID, (req,res,next)=>{
             res.status(201).json(newProject)
         })
         .catch(next)
-} )
-
+})
 router.put('/:id', validateProjectID, validateProject, (req, res, next)=>{
     Projects.update(req.params.id, req.body)
     .then(()=>{
