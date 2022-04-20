@@ -19,8 +19,8 @@ async function validateActionID(req,res,next) {
 }
 async function validateAction(req,res,next) {
     try{
-        const {description, notes } = req.body
-        if (!notes || !description ){
+        const {description, notes, completed } = req.body
+        if (!notes || !description || completed == null ){
             res.status(400).json({
                 message: "Missing valid notes or description"
             })
